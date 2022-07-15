@@ -19,7 +19,7 @@
             <th>Item</th>
             <th>Quality</th>
             <th>Line Total</th>
-            <th></th>
+            <th>remove</th>
           </tr>
           <tbody id="dispaly"></tbody>
         </table>
@@ -55,19 +55,19 @@
 
           var tr = document.createElement("tr");
 
-          var tdItm = document.createElement("tr");
+          var tdItm = document.createElement("td");
           tdItm.innerHTML = "Yoghurt";
           tr.appendChild(tdItm);
 
-          var tdQty = document.createElement("tr");
+          var tdQty = document.createElement("td");
           tdQty.innerHTML = qty;
           tr.appendChild(tdQty);
 
-          var tdLineTotal = document.createElement("tr");
+          var tdLineTotal = document.createElement("td");
           tdLineTotal.innerHTML = lineTotal;
           tr.appendChild(tdLineTotal);
 
-          var tdRemove = document.createElement("tr");
+          var tdRemove = document.createElement("td");
           var btnRemove = document.createElement("input");
           btnRemove.type = "button";
           btnRemove.value = "Remove";
