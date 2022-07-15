@@ -1,58 +1,40 @@
 <html>
   <head>
-    <title>Form Validataion</title>
+    <title>Geometric Calculator</title>
   </head>
   <body>
-    <form>
-      <span>
-        Name &nbsp;&nbsp;:
-        <input type="text" onkeyup="Cname()" id="nameId" required />
-      </span>
-      <br /><br />
-      <span>
-        Mobile :
-        <input type="text" onkeyup="Cmobile()" id="mobile" required />
-      </span>
-      <br /><br />
-      <input type="button" onclick="add()" value="submit" />
-      <input type="button" onclick="reset()" value="reset" />
-    </form>
+    <span>
+      Width &nbsp;:
+      <input type="number" id="width" />
+    </span>
+    <br /><br />
+    <span>
+      Height :
+      <input type="number" id="height" />
+    </span>
+    <br /><br />
+    <button id="area" onclick="calculateArea()">Area</button>
+    <button id="peri" onclick="calculatePerimeter()">Perimeter</button>
+    <p id="display">Type Width and Height and click the button</p>
 
     <script type="text/javascript">
-      const nameId = document.getElementById("nameId");
-      const mobile = document.getElementById("mobile");
+      var area = document.getElementById("area");
+      var peri = document.getElementById("peri");
+      var width = document.getElementById("width");
+      var height = document.getElementById("height");
 
-      function Cname() {
-        const pattern = /[a-zA-Z]{3,}/;
-        if (pattern.test(nameId.value)) {
-          nameId.style.backgroundColor = "lightGreen";
-        } else {
-          nameId.style.backgroundColor = "pink";
-        }
+      function calculateArea() {
+        var w = parseInt(width.value);
+        var h = parseInt(height.value);
+        var area = "Area is : " + w * h;
+        document.getElementById("display").innerHTML = area;
       }
 
-      function Cmobile() {
-        const pattern = /[0][7][0-9]{8}/;
-        if (pattern.test(mobile.value)) {
-          mobile.style.backgroundColor = "lightGreen";
-        } else {
-          mobile.style.backgroundColor = "pink";
-        }
-      }
-
-      function add() {
-        if (nameId.value == "") {
-          window.alert("Please Enter Your Name");
-        } else {
-          if (mobile.value == "") {
-            window.alert("Please Enter Your Mobile");
-          }
-        }
-      }
-
-      function reset() {
-        nameId.value = "";
-        mobile.value = "";
+      function calculatePerimeter() {
+        var w = parseInt(width.value);
+        var h = parseInt(height.value);
+        var perimeter = "Perimeter is : " + 2 * (w + h);
+        document.getElementById("display").innerHTML = perimeter;
       }
     </script>
   </body>
