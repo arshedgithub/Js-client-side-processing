@@ -1,40 +1,84 @@
 <html>
   <head>
-    <title>Geometric Calculator</title>
+    <title>Shopping Cart</title>
+    <style>
+      .grid-container {
+        display: grid;
+        grid-template-columns: 0.5fr 1fr;
+        grid-gap: 20px;
+      }
+    </style>
   </head>
   <body>
-    <span>
-      Width &nbsp;:
-      <input type="number" id="width" />
-    </span>
-    <br /><br />
-    <span>
-      Height :
-      <input type="number" id="height" />
-    </span>
-    <br /><br />
-    <button id="area" onclick="calculateArea()">Area</button>
-    <button id="peri" onclick="calculatePerimeter()">Perimeter</button>
-    <p id="display">Type Width and Height and click the button</p>
+    <div class="grid-container">
+      <div><img src="./images/yoghurt.jpg" alt="Item" /></div>
+      <div>
+        <h1>Shopping Cart</h1>
+        <table cellpadding="1" border="1">
+          <tr>
+            <th>Item</th>
+            <th>Quality</th>
+            <th>Line Total</th>
+            <th></th>
+          </tr>
+          <tbody id="dispaly"></tbody>
+        </table>
+        <p id="txtTotal"></p>
+      </div>
+    </div>
+    <p id="txtPrice">35.50</p>
+    <input type="button" onclick="increment()" value="+" />
+    <input type="number" id="quantity" value="0" min="0" />
+    <input type="button" onclick="decrement()" value="-" />
+    <input type="button" onclick="addToCart()" value="Add To Cart" />
 
     <script type="text/javascript">
-      var area = document.getElementById("area");
-      var peri = document.getElementById("peri");
-      var width = document.getElementById("width");
-      var height = document.getElementById("height");
+      var total = 0;
+      var quantity = document.getElementById("quantity");
+      var txtPrice = document.getElementById("txtPrice");
+      var dispaly = document.getElementById("dispaly");
 
-      function calculateArea() {
-        var w = parseInt(width.value);
-        var h = parseInt(height.value);
-        var area = "Area is : " + w * h;
-        document.getElementById("display").innerHTML = area;
+      function increment() {
+        quantity.value++;
+      }
+      function decrement() {
+        if (quantity.value != 0) {
+          quantity.value--;
+        }
       }
 
-      function calculatePerimeter() {
-        var w = parseInt(width.value);
-        var h = parseInt(height.value);
-        var perimeter = "Perimeter is : " + 2 * (w + h);
-        document.getElementById("display").innerHTML = perimeter;
+      function addToCart() {
+        var qty = parseInt(quantity.value);
+        var price = parseFloat(txtPrice.innerHTML);
+        if (qty != 0) {
+          var lineTotal = qty * price;
+
+          var tr = document.createElement("tr");
+
+          var tdItm = document.createElement("tr");
+          tdItm.innerHTML = "Yoghurt";
+          tr.appendChild(tdItm);
+
+          var tdQty = document.createElement("tr");
+          tdQty.innerHTML = qty;
+          tr.appendChild(tdQty);
+
+          var tdLineTotal = document.createElement("tr");
+          tdLineTotal.innerHTML = lineTotal;
+          tr.appendChild(tdLineTotal);
+
+          var tdRemove = document.createElement("tr");
+          var btnRemove = document.createElement("input");
+          btnRemove.type = "button";
+          btnRemove.value = "Remove";
+          tdRemove.appendChild(btnRemove);
+          tr.appendChild(tdRemove);
+
+          dispaly.appendChild(tr);
+
+          total += lineTotal;
+          txtTotal = "Total Bill is : " + total;
+        }
       }
     </script>
   </body>
