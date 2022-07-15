@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <title>Image Gallery</title>
+    <style type="text/css">
+      .thumbnail {
+        width: 400px;
+        height: 200px;
+      }
+      #display {
+        display: block;
+        height: 600px;
+        width: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <script type="text/javascript">
+      function f1(x) {
+        const display = document.getElementById("display");
+        display.src = x.src;
+        x.style.border = "5px solid #f00";
+      }
+      function f2(x) {
+        x.style.border = "";
+      }
+    </script>
+
+    <img
+      src="./images/fruit1.jpg"
+      class="thumbnail"
+      onmouseover="f1(this)"
+      onmouseout="f2(this)"
+    />
+    <img
+      src="./images/fruit1.jpg"
+      class="thumbnail"
+      onmouseover="f1(this)"
+      onmouseout="f2(this)"
+    />
+    <img
+      src="./images/fruit1.jpg"
+      class="thumbnail"
+      onmouseover="f1(this)"
+      onmouseout="f2(this)"
+    />
+    <img src="" id="display" />
+  </body>
+</html>
